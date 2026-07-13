@@ -36,3 +36,11 @@ System Windows Server został wypromowany do roli Kontrolera Domeny (DC), stają
 * **DNS Forwarding:** Skonfigurowano Windows Server do rozwiązywania nazw lokalnych dla domeny oraz przekazywania zapytań o domeny zewnętrzne (np. google.com) w świat.
 * **Struktura OU pod Tiering:** Zbudowano dedykowaną strukturę jednostek organizacyjnych (OU: Tier0, Tier1, Tier2) przygotowującą środowisko pod polityki bezpieczeństwa GPO.
 * **Dołączenie stacji roboczej:** Klient Windows 10 został pomyślnie podłączony do domeny i umieszczony w odpowiednim kontenerze (Tier 2).
+
+## 🔒 Etap 3: Bezpieczeństwo Urządzeń Końcowych i Serwera Plików (Zakończone)
+Trzecia faza skupiła się na obronie przed atakami na poświadczenia lokalne oraz rygorystycznym zarządzaniu danymi biznesowymi.
+
+* **Wdrożenie LAPS (Local Administrator Password Solution):** Rozszerzono schemat Active Directory i wdrożono automatyczną rotację haseł dla kont wbudowanych administratorów na stacjach roboczych. Hasła są bezpiecznie przechowywane w atrybucie `ms-Mcs-AdmPwd` i odczytywane wyłącznie przez autoryzowany personel IT.
+* **Serwer Plików z zasadą AGDLP:** Zbudowano bezpieczną strukturę katalogów (np. Repozytorium IT, Faktury) opartą na gniazdowaniu grup, rozdzielając logicznie użytkowników (Role Biznesowe) od dostępu do zasobu (Uprawnienia NTFS).
+* **Targetowanie Zasad Grupy (Item-Level Targeting):** Skonfigurowano GPO odpowiedzialne za mapowanie dysków sieciowych, wdrażając inteligentne warunki – pracownicy widzą wyłącznie dyski dedykowane dla ich działów (np. tylko członkowie grupy "Księgowość" widzą zmapowany dysk `K:\`).
+* **Audytowanie Zdarzeń Zabezpieczeń (Informatyka Śledcza):** Włączono zaawansowane zasady inspekcji dostępu do obiektów w GPO. System plików generuje teraz precyzyjne logi (Event ID 4663 oraz 4660) wskazujące kto, z jakiego urządzenia i o jakiej godzinie usunął lub zmodyfikował wrażliwy plik firmowy.
