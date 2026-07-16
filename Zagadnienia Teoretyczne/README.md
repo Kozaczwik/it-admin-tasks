@@ -37,3 +37,15 @@ Podczas udostępniania folderu w sieci, Windows sprawdza dwie warstwy zabezpiecz
 Kluczowe identyfikatory zdarzeń wykorzystywane przez zespoły SOC (Security Operations Center):
 * **4663:** Próba uzyskania dostępu do obiektu. W szczegółach (wartość `Accesses`) zdradza, czy użytkownik chciał zapisać dane (`WriteData`) czy je usunąć (`DELETE`). Często generuje dużo logów.
 * **4660:** Obiekt został fizycznie usunięty. To niepodważalny dowód kasacji pliku lub podfolderu. Zawsze występuje w parze z odpowiednim logiem 4663.
+
+### 8. ZabezpieczeniaPKI (Public Key Infrastructure) i Szablony Certyfikatów: 
+Infrastruktura zapewniająca najwyższy stopień bezpieczeństwa (Zero Trust) w autoryzacji maszyn. Pierwotne szablony certyfikatów (Wersja 1 z czasów Windows 2000) nie wspierają mechanizmu Auto-Enrollmentu i muszą być poddane duplikacji do nowszych wersji przez architekta systemów.
+
+### 9. DNS Sinkholing:
+ Lekkostrawna dla routerów metoda blokowania ruchu internetowego (np. social mediów). Polega na nakłonieniu lokalnego serwera DNS do rozwiązywania domen "zakazanych" na lokalny adres pętli zwrotnej (127.0.0.1), co natychmiast ubija połączenie jeszcze przed jego nawiązaniem.
+
+### 10. DNS Hijacking (Przechwycenie zapytań DNS):
+ Wymuszenie na urządzeniach sieciowych używania konkretnego serwera DNS (np. do celów Web Filteringu) poprzez reguły NAT typu dst-nat portu 53 na routerze, nawet w sytuacji, gdy pracownik spróbuje ominąć blokadę wpisując własny DNS na komputerze.
+
+### 11. Address Lists i Skryptowanie RouterOS:
+ Technika omijania limitów pamięciowych routerów (które nie posiadają silników L7). Wykorzystuje dedykowane skrypty (.rsc) uruchamiane przez narzędzie harmonogramu (Scheduler) do zautomatyzowanego wgrywania dziesiątek tysięcy złośliwych adresów IP z zewnętrznych baz (np. CERT) prosto do pamięci Firewalla.
