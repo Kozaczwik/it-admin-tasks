@@ -49,3 +49,19 @@ Infrastruktura zapewniająca najwyższy stopień bezpieczeństwa (Zero Trust) w 
 
 ### 11. Address Lists i Skryptowanie RouterOS:
  Technika omijania limitów pamięciowych routerów (które nie posiadają silników L7). Wykorzystuje dedykowane skrypty (.rsc) uruchamiane przez narzędzie harmonogramu (Scheduler) do zautomatyzowanego wgrywania dziesiątek tysięcy złośliwych adresów IP z zewnętrznych baz (np. CERT) prosto do pamięci Firewalla.
+
+ 12. Advanced Audit Policy (Zaawansowana Inspekcja):
+
+W przeciwieństwie do tradycyjnych polityk, zaawansowane zasady audytu pozwalają na selektywne logowanie, co ogranicza "szum" informacyjny.
+
+    Event ID 4688 (Process Creation): Kluczowy log dla zespołów Blue Team. Dzięki włączeniu flagi Include Command Line, umożliwia analizę tego, co dokładnie uruchomił użytkownik, co jest niezbędne do wykrycia ataku "living-off-the-land" (wykorzystywania legalnych narzędzi systemowych do nielegalnych celów).
+
+13. Mikro-segmentacja (Host-based Firewall):
+
+Zasada Zero Trust na poziomie lokalnego systemu operacyjnego. Zakłada, że nawet jeśli napastnik znajdzie się wewnątrz sieci, każda stacja robocza pozostaje odizolowaną wyspą, co drastycznie ogranicza "promień rażenia" (blast radius) infekcji.
+14. Grupa Protected Users:
+
+Mechanizm zabezpieczający konta uprzywilejowane. Członkowie tej grupy nie mogą być uwierzytelniani metodami podatnymi na ataki (NTLM, Digest Authentication). Wymusza ona również usuwanie poświadczeń z pamięci RAM (lsass.exe), co czyni ataki typu Pass-the-Hash niemożliwymi do wykonania przy użyciu standardowych narzędzi hakerskich.
+15. Syslog (Logowanie zdalne):
+
+Protokół przesyłania zdarzeń systemowych (RFC 5424). W architekturze Enterprise stanowi fundament dla systemów SIEM. Pozwala na przeniesienie ciężaru analizy logów poza urządzenie źródłowe, co jest kluczowe w informatyce śledczej – nawet jeśli napastnik zniszczy router, logi o jego aktywności są już bezpieczne na serwerze centralnym.
